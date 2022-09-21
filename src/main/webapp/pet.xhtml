@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+<ui:composition template = "pageTemplate.xhtml">
+   <ui:define name = "content">
+      <p:growl id="growl" sticky="false" showDetail="true" />
+      <h:form id="petFormId">
+         <p:dataTable id="petTableId" var="pet"
+                      value="#{petController.petList}"
+                      rows="10"
+                      paginator="true"
+                      rowsPerPageTemplate="5,10,15">
+            <f:facet name="header">
+               <p:outputLabel value="Hayvan Listesi" />
+               <p:commandButton style="float: right"
+                                onclick="PF('ekleDialog').show()"
+                                icon="fa fa-plus" />
+            </f:facet>
+            <p:column headerText="Hayvan Numarası">
+               <p:outputLabel value="#{pet.id}" />
+            </p:column>
+            <p:column headerText="Hayvan Adı">
+               <p:outputLabel value="#{pet.name}" />
+            </p:column>
+            <p:column headerText="Hayvan Türü">
+               <p:outputLabel value="#{pet.type.name}" />
+            </p:column>
+            <p:column headerText="Hayvan Cinsi">
+               <p:outputLabel value="#{pet.breed}" />
+            </p:column>
+            <p:column headerText="Hayvan Sahibi">
+               <p:outputLabel value="#{pet.owner.firstName} #{pet.owner.lastName }" />
+            </p:column>
+            <p:column headerText="Hayvan Doğum Tarihi">
+               <p:outputLabel value="#{pet.birthDate}" >
+                  <f:convertDateTime pattern="dd/MM/yyyy" />
+               </p:outputLabel>
+            </p:column>
+            <p:column headerText="Açıklama">
+               <p:outputLabel value="#{pet.explanation}" />
+            </p:column>
+            <p:column headerText="Güncelleme/Silme">
+               <p:commandButton value="Sil"
+                                actionListener="#{petController.delete(pet)}"
+                                update="growl petTableId">
+                  <p:confirm header="Bilgilendirme"
+                             message="Silmek istediğinize emin misiniz?"
+                             icon="fa fa-exclamation-triangle" />
+               </p:commandButton>
+               <p:commandButton value="Güncelle"
+                                update="guncellemeDialogId"
+                                oncomplete="PF('guncellemeDialog').show()"
+                                actionListener="#{petController.selectPet(pet)}"
+               />
+            </p:column>
+         </p:dataTable>
+         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+            <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+         </p:confirmDialog>
+      </h:form>
+      <p:dialog widgetVar="ekleDialog" closable="true"
+                resizable="false" modal="true" header="Hayvan Ekleme">
+         <h:form>
+            <h:panelGrid columns="2">
+               <p:outputLabel value="Hayvan Adı: " />
+               <p:inputText id="saveNameId"
+                            value="#{petController.pet.name}" />
+               <p:outputLabel value="Hayvan Cinsi: " />
+               <p:inputText id="saveBreedId"
+                            value="#{petController.pet.breed}" />
+
+               <p:outputLabel value="Hayvan Türü" />
+               <p:selectOneMenu id="petType"
+                                converter="petTypeConverter"
+                                value="#{petController.pet.type}"
+                                effect="fold" editable="true">
+                  <f:selectItem itemLabel="Birini Seçiniz" itemValue="" />
+                  <f:selectItems var="pettype" value="#{petController.petTypeList}"
+                                 itemValue="#{pettype}" itemLabel="#{pettype.name}"/>
+               </p:selectOneMenu>
+
+               <p:outputLabel value="Hayvan Sahibi" />
+               <p:selectOneMenu id="petOwner"
+                                value="#{petController.pet.owner}"
+                                editable="true"
+                                converter="ownerConverter">
+                  <f:selectItem itemLabel="Birini giriniz" itemValue="" />
+                  <f:selectItems value="#{petController.ownerList}"
+                                 var="s" itemValue="#{s}" itemLabel="#{s.firstName} #{s.lastName}"/>
+               </p:selectOneMenu>
+               <p:outputLabel value="Açıklama: " />
+               <p:inputText id="saveExpId"
+                            value="#{petController.pet.explanation}" />
+               <p:outputLabel value="Hayvan Doğum Tarihi: " />
+               <p:datePicker id="saveBirthDateId" value="#{petController.pet.birthDate}" />
+            </h:panelGrid>
+            <p:commandButton value="Kaydet"
+                             actionListener="#{petController.save()}"
+                             oncomplete="PF('ekleDialog').hide()"
+                             update="petFormId:petTableId growl"/>
+         </h:form>
+      </p:dialog>
+      <p:dialog id="guncellemeDialogId" widgetVar="guncellemeDialog" resizable="false"
+                header="Güncelleme İşlemi" modal="true">
+         <h:form>
+         <h:panelGrid columns="4">
+            <p:outputLabel value="Hayvan Adı:"/>
+            <p:inputText value="#{petController.selectedPet.name}"/>
+            <p:outputLabel value="Hayvan Cinsi"/>
+            <p:inputText value="#{petController.selectedPet.breed}"/>
+            <p:outputLabel value="Hayvan Türü"/>
+            <p:inputText value="#{petController.selectedPet.type.name}"/>
+            <p:outputLabel value="Hayvan Sahibi"/>
+            <p:selectOneMenu value="#{petController.selectedPet.owner}"
+                             converter="ownerConverter"
+                             editable="true"
+                             effect="fold">
+               <f:selectItem itemLabel="Birini Seçiniz" itemValue="" itemDisabled="true"/>
+               <f:selectItems var="owner" value="#{petController.ownerList}"
+                              itemValue="#{owner}" itemLabel="#{owner.firstName} #{owner.lastName}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="Hayvan Doğum Tarihi"/>
+            <p:datePicker value="#{petController.selectedPet.birthDate}"/>
+            <p:outputLabel value="Açıklama"/>
+            <p:inputText value="#{petController.selectedPet.explanation}"/>
+
+         </h:panelGrid>
+            <p:commandButton value="Güncelle"
+                             oncomplete="PF('guncellemeDialog').hide()"
+                             actionListener="#{petController.update()}"
+                             update="growl petFormId:petTableId"/>
+         </h:form>
+
+      </p:dialog>
+   </ui:define>
+</ui:composition>
+</body>
+</html>

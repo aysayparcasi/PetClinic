@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+<ui:composition template = "pageTemplate.xhtml">
+    <ui:define name = "content">
+        <!--  yorum satırı -->
+        <p:growl id="growl" sticky="false" showDetail="true" />
+        <h:form id="ownerFormId">
+            <p:dataTable id="ownerTableId" var="owner"
+                         value="#{ownerController.ownerList}">
+                <f:facet name="header">
+                    <p:outputLabel value="Hayvan Sahipleri Listesi" />
+                    <p:commandButton style="float: right"
+                                     onclick="PF('ekleDialog').show()"
+                                     icon="fa fa-plus" />
+                </f:facet>
+                <p:column headerText="Sahip Numarası">
+                    <p:outputLabel value="#{owner.id}" />
+                </p:column>
+                <p:column headerText="Adı">
+                    <p:outputLabel value="#{owner.firstName}" />
+                </p:column>
+                <p:column headerText="Soyadı">
+                    <p:outputLabel value="#{owner.lastName}" />
+                </p:column>
+                <p:column headerText="Adres">
+                    <p:outputLabel value="#{owner.address}" />
+                </p:column>
+                <p:column headerText="Şehir">
+                    <p:outputLabel value="#{owner.city}" />
+                </p:column>
+                <p:column headerText="Email">
+                    <p:outputLabel value="#{owner.email}" />
+                </p:column>
+                <p:column headerText="Telefon">
+                    <p:outputLabel value="#{owner.telephone}" />
+                </p:column>
+                <p:column headerText="Güncelleme/Silme">
+                    <p:commandButton value="Sil"
+                                     actionListener="#{ownerController.delete(owner)}"
+                                     update="growl ownerTableId">
+                        <p:confirm header="Bilgilendirme"
+                                   message="Silmek istediğinize emin misiniz?"
+                                   icon="fa fa-exclamation-triangle" />
+                    </p:commandButton>
+                    <p:commandButton value="Güncelle"
+                                     update="guncellemeDialogId"
+                                     oncomplete="PF('guncellemeDialog').show()"
+                                     actionListener="#{ownerController.selectOwner(owner)}"
+                    />
+                </p:column>
+            </p:dataTable>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+                <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+            </p:confirmDialog>
+        </h:form>
+        <p:dialog widgetVar="ekleDialog" closable="true"
+                  resizable="false" modal="true" header="Sahip Ekleme">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Sahip adı: " />
+                    <p:inputText id="saveNameId"
+                                 value="#{ownerController.owner.firstName}" />
+                    <p:outputLabel value="Sahip soyadı: " />
+                    <p:inputText id="saveSurnameId"
+                                 value="#{ownerController.owner.lastName}" />
+                    <p:outputLabel value="Sahip adres: " />
+                    <p:inputText id="saveAdressId"
+                                 value="#{ownerController.owner.address}" />
+                    <p:outputLabel value="Sahip Şehir: " />
+                    <p:inputText id="saveCityId"
+                                 value="#{ownerController.owner.city}" />
+                    <p:outputLabel value="Sahip Email: " />
+                    <p:inputText id="saveEmailId"
+                                 value="#{ownerController.owner.email}" />
+                    <p:outputLabel value="Sahip Telefon: " />
+                    <p:inputText id="saveTelId"
+                                 value="#{ownerController.owner.telephone}" />
+
+                </h:panelGrid>
+                <p:commandButton value="Kaydet"
+                                 actionListener="#{ownerController.save()}"
+                                 oncomplete="PF('ekleDialog').hide()"
+                                 update="ownerFormId:ownerTableId saveNameId saveSurnameId saveAdressId
+                                 saveCityId saveEmailId saveTelId
+								growl"/>
+            </h:form>
+        </p:dialog>
+        <p:dialog id="guncellemeDialogId" widgetVar="guncellemeDialog" resizable="false"
+                  header="Güncelleme İşlemi" modal="true">
+            <h:form> adres şehir email telefon
+                <h:panelGrid columns="4">
+                <p:outputLabel value="Sahip Adı:" />
+                <p:inputText value="#{ownerController.selectedOwner.firstName}" />
+                <p:outputLabel value="Sahip Soyadı:" />
+                <p:inputText value="#{ownerController.selectedOwner.lastName}" />
+                <p:outputLabel value="Sahip Adresi"/>
+                <p:inputText value="#{ownerController.selectedOwner.address}"/>
+                <p:outputLabel value="Sahip Şehir"/>
+                <p:inputText value="#{ownerController.selectedOwner.city}"/>
+                <p:outputLabel value="Sahip email"/>
+                <p:inputText value="#{ownerController.selectedOwner.email}"/>
+                <p:outputLabel value="Sahip telefon"/>
+                <p:inputText value="#{ownerController.selectedOwner.telephone}"/>
+                <p:commandButton value="Güncelle"
+                                 oncomplete="PF('guncellemeDialog').hide()"
+                                 actionListener="#{ownerController.update()}"
+                                 update="growl ownerFormId:ownerTableId"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+</body>
+</html>
