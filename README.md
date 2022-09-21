@@ -1,15 +1,15 @@
 #petCLinicWithJsfAndSpring
 
-Uygulamayı çalıştırmak için öncelikle Intellij kurulumu gerekmektedir. Yada java idelerinden herhangi biri ile çalışabilirsiniz. Postgresql kurulumu gerçekleştirilmelidir. 
-Uygulamayı ayağa kaldırmak için:
-url: http://localhost:8070/petClinic/index.xhtml -- Bu url'i browsera yazmanız gerekmektedir. Sekmeler arası geçişi bu sayfadan sağlayabilirsiniz.
-petClinic - Veteriner Uygulamasını geliştirirken; backend-java için intellij kullandım.Spring, Spring-MVC, JPA, Hibernate ve Maven teknolojilerinden faydalandım.
-Java 8 ile projemi tamamladım. Lombok kütüphanesi de kullandım.
-Frontend için ise Jsf kullandım. Projede gördüğünüz .xhtml uzantılı dosyalar jsf dosyalarımdır.
-Database bağlantısını PostgreSql ile gerçekleştirdim.
-Projede 4 sekme yer almaktadır. Bunlar;
-Pet(Hayvan), Owner(Hayvan Sahibi), PetType(Hayvan Türleri),Research(Listeleme)
-Pet, Owner, PetType -> verileri listeleme, kaydetme, silme ve güncelleme gibi CRUD işlemleri yapılabilmektedir.
+<h5>Uygulamayı çalıştırmak için öncelikle Intellij kurulumu gerekmektedir. Yada java idelerinden herhangi biri ile çalışabilirsiniz. Postgresql kurulumu gerçekleştirilmelidir. <h5>
+<h5>Uygulamayı çalıştırmak için:<h5>
+<h5>url: http://localhost:8070/petClinic/index.xhtml -- Bu url'i browsera yazmanız gerekmektedir. Sekmeler arası geçişi bu sayfadan sağlayabilirsiniz.<h5>
+<h5>petClinic - Veteriner Uygulamasını geliştirirken; backend-java için intellij kullandım.Spring, Spring-MVC, JPA, Hibernate ve Maven teknolojilerinden faydalandım.<h5>
+<h5>Java 8 ile projemi tamamladım. Lombok kütüphanesi de kullandım.<h5>
+<h5>Frontend için ise Jsf kullandım. Projede gördüğünüz .xhtml uzantılı dosyalar jsf dosyalarımdır.<h5>
+<h5>Database bağlantısını PostgreSql ile gerçekleştirdim.<h5>
+<h5>Projede 4 sekme yer almaktadır. Bunlar;<h5>
+<h5>Pet(Hayvan), Owner(Hayvan Sahibi), PetType(Hayvan Türleri),Research(Listeleme)<h5>
+<h5>Pet, Owner, PetType -> verileri listeleme, kaydetme, silme ve güncelleme gibi CRUD işlemleri yapılabilmektedir.<h5>
 
 Spring kullanmamın sebebi;
 1. Spring Boot, sizi kodlama ve gereksiz yapılandırma zahmetinden kurtarması. 
