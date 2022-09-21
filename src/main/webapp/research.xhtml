@@ -13,7 +13,7 @@
       <h:form id="assingFormId">
          <h:panelGrid columns="2">
             <p:outputLabel value="Sahip : " />
-            <p:selectOneMenu value="#{petController.ownerList}"
+            <p:selectOneMenu value="#{petController.selectedOwner}"
                              editable="true" converter="ownerConverter">
                <p:ajax event="change" update="petListId"
                        listener="#{petController.changeOwner()}"/>
@@ -23,12 +23,12 @@
                               itemValue="#{owner}" var="owner" />
             </p:selectOneMenu>
 
+
             <p:outputLabel value="Hayvanlar : " />
             <p:selectOneMenu id="petListId" value="#{petController.selectedPet}"
                              editable="true" converter="petConverter">
-               <p:ajax  update="petListId"
-                       listener="#{petController.selectedOwner}"/>
-               <f:selectItem itemLabel="Birini Seçiniz" itemValue="" />
+               <p:ajax event="change" update="petListId"
+                       listener="#{petController.changePet()}"/>
                <f:selectItems value="#{petController.petList}"
                               itemLabel="#{pet.name} "
                               itemValue="#{pet}" var="pet" />

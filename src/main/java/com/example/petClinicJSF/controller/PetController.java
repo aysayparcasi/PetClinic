@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 @Controller
@@ -88,6 +89,10 @@ public class PetController {
         this.petList = this.petService.findPetByOwner(this.selectedOwner);
     }
 
+    public void changePet() {
+        this.selectedOwners =
+                (List<Owner>) this.selectedPet.getOwner();
 
 
+    }
 }

@@ -45,6 +45,6 @@ public class PetServiceImp implements PetService {
 
     @Override
     public List<Pet> findPetByOwner(Owner owner) {
-        return null;
+        return this.petRepository.PetByOwner(owner);
     }
 }

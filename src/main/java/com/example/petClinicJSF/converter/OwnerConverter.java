@@ -25,7 +25,7 @@ public class OwnerConverter implements Converter {
         OwnerServiceImp ownerServiceImp = context.getApplication()
                 .evaluateExpressionGet(context, "#{ownerServiceImp}"
                         , OwnerServiceImp.class);
-        return ownerServiceImp.findByName(value);
+        return ownerServiceImp.findById(Long.parseLong(value));
     }
 
 
@@ -33,7 +33,7 @@ public class OwnerConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value instanceof Owner) {
-            return ((Owner) value).getLastName();
+            return String.valueOf(((Owner) value).getId());
         }
         return "";
     }

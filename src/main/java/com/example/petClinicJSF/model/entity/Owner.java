@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -34,5 +35,22 @@ public class Owner extends Person {
 
 
     public Owner() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Owner)) return false;
+        Owner owner = (Owner) o;
+        return getId().equals(owner.getId())
+                && Objects.equals(getAddress(), owner.getAddress())
+                && Objects.equals(getCity(), owner.getCity())
+                && Objects.equals(getEmail(), owner.getEmail())
+                && Objects.equals(getTelephone(), owner.getTelephone());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(),getAddress(),getCity(),getEmail(),getTelephone());
     }
 }

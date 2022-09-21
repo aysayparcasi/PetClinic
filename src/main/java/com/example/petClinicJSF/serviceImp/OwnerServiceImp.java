@@ -38,7 +38,12 @@ public class OwnerServiceImp implements OwnerService {
     }
 
     @Override
-    public Owner findByName(String lastName) {
+    public Owner findByLastName(String lastName) {
         return this.ownerRepository.findOwnerByLastName(lastName);
+    }
+
+    @Override
+    public Owner findById(Long id) {
+        return this.ownerRepository.findById(id).orElse(null);
     }
 }

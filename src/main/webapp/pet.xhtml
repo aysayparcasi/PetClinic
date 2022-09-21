@@ -110,13 +110,20 @@
       <p:dialog id="guncellemeDialogId" widgetVar="guncellemeDialog" resizable="false"
                 header="Güncelleme İşlemi" modal="true">
          <h:form>
-         <h:panelGrid columns="4">
+         <h:panelGrid columns="2">
             <p:outputLabel value="Hayvan Adı:"/>
             <p:inputText value="#{petController.selectedPet.name}"/>
             <p:outputLabel value="Hayvan Cinsi"/>
             <p:inputText value="#{petController.selectedPet.breed}"/>
             <p:outputLabel value="Hayvan Türü"/>
-            <p:inputText value="#{petController.selectedPet.type.name}"/>
+            <p:selectOneMenu value="#{petController.selectedPet.type}"
+                             converter="petTypeConverter"
+                             editable="true"
+                             effect="fold">
+               <f:selectItem itemLabel="Birini Seçiniz" itemValue="" itemDisabled="true"/>
+               <f:selectItems var="petType" value="#{petController.petTypeList}"
+                              itemValue="#{petType}" itemLabel="#{petType.name}"/>
+            </p:selectOneMenu>
             <p:outputLabel value="Hayvan Sahibi"/>
             <p:selectOneMenu value="#{petController.selectedPet.owner}"
                              converter="ownerConverter"

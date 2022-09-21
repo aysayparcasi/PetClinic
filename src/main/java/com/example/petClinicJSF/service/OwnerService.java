@@ -13,5 +13,7 @@ public interface OwnerService {
     void update(Owner owner);
     List<Owner> findAll();
 
-    Owner findByName(String lastName);
+    Owner findByLastName(String lastName);
+
+    Owner findById(Long id);
 }
