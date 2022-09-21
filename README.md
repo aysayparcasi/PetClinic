@@ -1,15 +1,15 @@
 #petCLinicWithJsfAndSpring
 
-<h1>Uygulamayı çalıştırmak için öncelikle Intellij kurulumu gerekmektedir. Yada java idelerinden herhangi biri ile çalışabilirsiniz. Postgresql kurulumu gerçekleştirilmelidir. <h1>
-<h1>Uygulamayı çalıştırmak için:<h1>
-<h1>url: http://localhost:8070/petClinic/index.xhtml -- Bu url'i browsera yazmanız gerekmektedir. Sekmeler arası geçişi bu sayfadan sağlayabilirsiniz.<h1>
-<h1>petClinic - Veteriner Uygulamasını geliştirirken; backend-java için intellij kullandım.Spring, Spring-MVC, JPA, Hibernate ve Maven teknolojilerinden faydalandım.<h1>
-<h1>Java 8 ile projemi tamamladım. Lombok kütüphanesi de kullandım.<h1>
-<h1>Frontend için ise Jsf kullandım. Projede gördüğünüz .xhtml uzantılı dosyalar jsf dosyalarımdır.<h1>
-<h1>Database bağlantısını PostgreSql ile gerçekleştirdim.<h1>
-<h1>Projede 4 sekme yer almaktadır. Bunlar;<h1>
-<h1>Pet(Hayvan), Owner(Hayvan Sahibi), PetType(Hayvan Türleri),Research(Listeleme)<h1>
-<h1>Pet, Owner, PetType -> verileri listeleme, kaydetme, silme ve güncelleme gibi CRUD işlemleri yapılabilmektedir.<h1>
+<h5>Uygulamayı çalıştırmak için öncelikle Intellij kurulumu gerekmektedir. Yada java idelerinden herhangi biri ile çalışabilirsiniz. Postgresql kurulumu gerçekleştirilmelidir. <h5>
+<h5>Uygulamayı çalıştırmak için:<h5>
+<h5>url: http://localhost:8070/petClinic/index.xhtml -- Bu url'i browsera yazmanız gerekmektedir. Sekmeler arası geçişi bu sayfadan sağlayabilirsiniz.<h5>
+<h5>petClinic - Veteriner Uygulamasını geliştirirken; backend-java için intellij kullandım.Spring, Spring-MVC, JPA, Hibernate ve Maven teknolojilerinden faydalandım.<h5>
+<h5>Java 8 ile projemi tamamladım. Lombok kütüphanesi de kullandım.<h5>
+<h5>Frontend için ise Jsf kullandım. Projede gördüğünüz .xhtml uzantılı dosyalar jsf dosyalarımdır.<h5>
+<h5>Database bağlantısını PostgreSql ile gerçekleştirdim.<h5>
+<h5>Projede 4 sekme yer almaktadır. Bunlar;<h5>
+<h5>Pet(Hayvan), Owner(Hayvan Sahibi), PetType(Hayvan Türleri),Research(Listeleme)<h5>
+<h5>Pet, Owner, PetType -> verileri listeleme, kaydetme, silme ve güncelleme gibi CRUD işlemleri yapılabilmektedir.<h5>
 
 Spring kullanmamın sebebi;
 1. Spring Boot, sizi kodlama ve gereksiz yapılandırma zahmetinden kurtarması. 
