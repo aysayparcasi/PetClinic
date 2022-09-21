@@ -1,7 +1,7 @@
 #petCLinicWithJsfAndSpring
 
 <h1>Uygulamayı çalıştırmak için öncelikle Intellij kurulumu gerekmektedir. Yada java idelerinden herhangi biri ile çalışabilirsiniz. Postgresql kurulumu gerçekleştirilmelidir. <h1>
-<h1>Uygulamayı ayağa kaldırmak için:<h1>
+<h1>Uygulamayı çalıştırmak için:<h1>
 <h1>url: http://localhost:8070/petClinic/index.xhtml -- Bu url'i browsera yazmanız gerekmektedir. Sekmeler arası geçişi bu sayfadan sağlayabilirsiniz.<h1>
 <h1>petClinic - Veteriner Uygulamasını geliştirirken; backend-java için intellij kullandım.Spring, Spring-MVC, JPA, Hibernate ve Maven teknolojilerinden faydalandım.<h1>
 <h1>Java 8 ile projemi tamamladım. Lombok kütüphanesi de kullandım.<h1>
