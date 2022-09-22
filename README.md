@@ -10,6 +10,8 @@
 <h5>Projede 4 sekme yer almaktadır. Bunlar;<h5>
 <h5>Pet(Hayvan), Owner(Hayvan Sahibi), PetType(Hayvan Türleri),Research(Listeleme)<h5>
 <h5>Pet, Owner, PetType -> verileri listeleme, kaydetme, silme ve güncelleme gibi CRUD işlemleri yapılabilmektedir.<h5>
+<h5>Research(listeleme) sekmesinde : Hayvan sahibine göre hayvan listeleme işlemi yapılmıştır.<h5>
+<h5>Login Page eklenerek, Login yapılması koşuluyla sisteme giriş yapılması sağlanmıştır.<h5>
 
 Spring kullanmamın sebebi;
 1. Spring Boot, sizi kodlama ve gereksiz yapılandırma zahmetinden kurtarması. 
