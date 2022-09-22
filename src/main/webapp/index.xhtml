@@ -6,9 +6,17 @@
 	  xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
+<body>
+<h:form>
+	<p>Kullanıcı Adı <h:inputText value="#{loginController.user.username}"/> </p>
+	<p>Parola <h:inputText value="#{loginController.user.password}"/> </p>
+	<h:commandButton action="#{loginController.Login()}" value="Login"/>
+</h:form>
+</body>
 	<body>
 
 		<ui:composition template = "pageTemplate.xhtml">
+
 			<ui:define name = "content" >
 				<h1>Welcome to  Application...</h1>
 			</ui:define>
