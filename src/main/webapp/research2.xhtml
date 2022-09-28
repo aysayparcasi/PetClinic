@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+<ui:composition template = "pageTemplate.xhtml">
+    <ui:define name = "content">
+        <p:growl id="growl" sticky="false" showDetail="true" />
+        <h:form id="assingFormId">
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Veteriner : " />
+                <p:selectOneMenu value="#{vetController.selectedVet}"
+                                 editable="true" converter="vetConverter">
+                    <p:ajax event="change" update="vetListId"/>
+
+                    <f:selectItem itemLabel="Birini Seçiniz" itemValue="" />
+                    <f:selectItems value="#{vetController.vetList}"
+                                   itemLabel="#{vet.firstName}"
+                                   itemValue="#{vet}" var="vet" />
+                </p:selectOneMenu>
+
+
+                <p:outputLabel value="Uzmanlıklar : " />
+                <p:selectOneMenu id="vetListId" value="#{specialtyController.selectedSpecialty}"
+                                 editable="true" converter="specialtyConverter">
+                    <p:ajax event="change" update="vetListId"/>
+
+                    <f:selectItems value="#{specialtyController.specialtyList}"
+                                   itemLabel="#{specialty.name} "
+                                   itemValue="#{specialty}" var="specialty" />
+                </p:selectOneMenu>
+            </h:panelGrid>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

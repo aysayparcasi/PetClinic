@@ -18,6 +18,14 @@
         <converter-id>petConverter</converter-id>
         <converter-class>com.example.petClinicJSF.converter.PetConverter</converter-class>
     </converter>
+    <converter>
+        <converter-id>vetConverter</converter-id>
+        <converter-class>com.example.petClinicJSF.converter.VetConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>specialtyConverter</converter-id>
+        <converter-class>com.example.petClinicJSF.converter.SpecialtyConverter</converter-class>
+    </converter>
 
 
 

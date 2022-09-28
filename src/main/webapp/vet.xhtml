@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+<ui:composition template = "pageTemplate.xhtml">
+   <ui:define name = "content">
+      <p:growl id="growl" sticky="false" showDetail="true" />
+      <h:form id="vetFormId">
+         <p:dataTable id="vetTableId" var="vet"
+                      value="#{vetController.vetList}">
+            <f:facet name="header">
+               <p:outputLabel value="Veteriner Listesi" />
+               <p:commandButton style="float: right"
+                                onclick="PF('ekleDialog').show()"
+                                icon="fa fa-plus" />
+            </f:facet>
+            <p:column headerText="Veteriner Numarası">
+               <p:outputLabel value="#{vet.id}" />
+            </p:column>
+            <p:column headerText=" Veteriner Adı">
+               <p:outputLabel value="#{vet.firstName}" />
+            </p:column>
+            <p:column headerText=" Veteriner Soyadı">
+               <p:outputLabel value="#{vet.lastName}" />
+            </p:column>
+            <p:column headerText="Güncelleme/Silme">
+               <p:commandButton value="Sil"
+                                actionListener="#{vetController.delete(vet)}"
+                                update="growl vetTableId">
+                  <p:confirm header="Bilgilendirme"
+                             message="Silmek istediğinize emin misiniz?"
+                             icon="fa fa-exclamation-triangle"/>
+               </p:commandButton>
+               <p:commandButton value="Güncelle"
+                                update="guncellemeDialogId"
+                                oncomplete="PF('guncellemeDialog').show()"
+                                actionListener="#{vetController.selectVet(vet)}"
+               />
+            </p:column>
+         </p:dataTable>
+         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check"
+                             style="background-color: darkgreen" timeout="3"/>
+            <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times"
+                             style="background-color: red" />
+         </p:confirmDialog>
+      </h:form>
+      <p:dialog widgetVar="ekleDialog" closable="true"
+                resizable="false" modal="true" header="Veteriner Ekleme">
+         <h:form>
+            <h:panelGrid columns="2">
+               <p:outputLabel value="Veteriner adı: " />
+               <p:inputText id="saveNameId"
+                            value="#{vetController.vet.firstName}" />
+               <p:outputLabel value="Veteriner soyadı: " />
+               <p:inputText id="saveSurnameId"
+                            value="#{vetController.vet.lastName}" />
+            </h:panelGrid>
+            <p:commandButton value="Kaydet"
+                             actionListener="#{vetController.save()}"
+                             oncomplete="PF('ekleDialog').hide()"
+                             update="vetFormId:vetTableId saveNameId saveSurnameId
+								growl"/>
+         </h:form>
+      </p:dialog>
+      <p:dialog id="guncellemeDialogId" widgetVar="guncellemeDialog" resizable="false"
+                header="Güncelleme İşlemi" modal="true">
+         <h:form>
+            <h:panelGrid columns="4">
+               <p:outputLabel value="Veteriner Adı:" />
+               <p:inputText value="#{vetController.selectedVet.firstName}" />
+               <p:outputLabel value="Veteriner Soyadı:" />
+               <p:inputText value="#{vetController.selectedVet.lastName}" />
+               <p:commandButton value="Güncelle"
+                                oncomplete="PF('guncellemeDialog').hide()"
+                                actionListener="#{vetController.update()}"
+                                update="growl vetFormId:vetTableId"/>
+            </h:panelGrid>
+         </h:form>
+      </p:dialog>
+   </ui:define>
+</ui:composition>
+</body>
+</html>

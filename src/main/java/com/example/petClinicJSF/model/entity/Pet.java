@@ -11,13 +11,14 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 //tür,cins,isim,yaş,açıklama tür:kedi cins:siyam
 
-
-
 @Entity
 @Table(name = "pets")
+@Getter
+@Setter
 public class Pet extends NamedEntity {
 
    @ManyToOne
@@ -39,44 +40,9 @@ public class Pet extends NamedEntity {
     @Column(name = "explanation")
     private String explanation;
 
- public Owner getOwner() {
-  return owner;
- }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //neden ALL:
+    //Eğer pet silinirse onunla ilgili olan tüm visitsler birlikte kaydedilir ve güncellenir.
+    private Set<Visit> visits = new LinkedHashSet<>();
 
-
- public void setOwner(Owner owner) {
-  this.owner = owner;
- }
-
- public String getBreed() {
-  return breed;
- }
-
- public void setBreed(String breed) {
-  this.breed = breed;
- }
-
- public Date getBirthDate() {
-  return birthDate;
- }
-
- public void setBirthDate(Date birthDate) {
-  this.birthDate = birthDate;
- }
-
- public PetType getType() {
-  return type;
- }
-
- public void setType(PetType type) {
-  this.type = type;
- }
-
- public String getExplanation() {
-  return explanation;
- }
-
- public void setExplanation(String explanation) {
-  this.explanation = explanation;
- }
 }

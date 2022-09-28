@@ -20,12 +20,13 @@ public class OwnerServiceImp implements OwnerService {
     public void save(Owner owner) {
         this.ownerRepository.save(owner);
     }
-
+    @Transactional
     @Override
     public void delete(Owner owner) {
         this.ownerRepository.delete(owner);
     }
 
+    @Transactional
     @Override
     public void update(Owner owner) {
         this.ownerRepository.save(owner);

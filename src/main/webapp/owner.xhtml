@@ -9,7 +9,6 @@
 <body>
 <ui:composition template = "pageTemplate.xhtml">
     <ui:define name = "content">
-        <!--  yorum satırı -->
         <p:growl id="growl" sticky="false" showDetail="true" />
         <h:form id="ownerFormId">
             <p:dataTable id="ownerTableId" var="owner"
@@ -47,7 +46,7 @@
                                      update="growl ownerTableId">
                         <p:confirm header="Bilgilendirme"
                                    message="Silmek istediğinize emin misiniz?"
-                                   icon="fa fa-exclamation-triangle" />
+                                   icon="fa fa-exclamation-triangle"/>
                     </p:commandButton>
                     <p:commandButton value="Güncelle"
                                      update="guncellemeDialogId"
@@ -57,8 +56,10 @@
                 </p:column>
             </p:dataTable>
             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
-                <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+                <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check"
+                                 style="background-color: darkgreen" timeout="3"/>
+                <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times"
+                                 style="background-color: red" />
             </p:confirmDialog>
         </h:form>
         <p:dialog widgetVar="ekleDialog" closable="true"

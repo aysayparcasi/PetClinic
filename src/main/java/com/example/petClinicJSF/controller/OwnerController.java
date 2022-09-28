@@ -61,7 +61,7 @@ public class OwnerController {
     }
 
     public void selectOwner(Owner owner){
-        this.selectedOwner =owner;
+        this.selectedOwner = owner;
     }
 
 
